@@ -41,7 +41,7 @@ function getAllCameras(data){
 
         img.setAttribute("src", data[i].imageUrl);
         productName.innerHTML = data[i].name;
-        productPrice.innerHTML = 'price :' + data[i].price;
+        productPrice.innerHTML = 'price: $' + data[i].price/100;
         link.appendChild(img);
         
 
@@ -82,18 +82,21 @@ function getUrlParams(){
   fetch(url + id)
   .then(function (response) {
     return response.json();
+}).then(function (cameraDetail) {
+    getOneCamera(cameraDetail);
 }).then(function (data) {
-    getOneCamera(data);
+    returnLenses(data);
 })
 .catch(function (err) {
     console.log('error: ' + err);
 });
 
-function getOneCamera(data){
+function getOneCamera(cameraDetail){
     let pageContainer =document.getElementById("single-camera-page-container");
     let img = document.createElement("img");
+    let button = document.createElement("button"); 
     let cameraName = document.createElement("h2");
-    let cameraPrice = document.createElement("h3");
+    let cameraPrice = document.createElement("h5");
     let descritpion = document.createElement("h5");
     let cameraDescription = document.createElement("p");
     let labelLenses = document.createElement("label");
@@ -102,9 +105,12 @@ function getOneCamera(data){
     let containerCameraDetails =  document.createElement("div");
     let totalContainer =  document.createElement("div");
 
-
+    
     containerImage.appendChild(img);
+    containerImage.appendChild(button );
     containerImage.classList.add("col-md-4");
+    button.classList.add("btn",  "add-to-cart");
+    button.setAttribute("id","add-cart");
 
     selectLenses.setAttribute("id","lenses" );
     labelLenses.setAttribute("for","lenses" );
@@ -116,20 +122,22 @@ function getOneCamera(data){
     containerCameraDetails.appendChild(cameraDescription);
     containerCameraDetails.appendChild(labelLenses);
     containerCameraDetails.appendChild(selectLenses);
-    containerCameraDetails.classList.add("col-md-8");
+    containerCameraDetails.classList.add("col-md-4");
 
-    img.setAttribute("src", data.imageUrl);
-    cameraName.innerHTML = data.name;
-    cameraPrice.innerHTML ='$ ' + data.price;
-    descritpion.innerHTML = 'Description';
-    cameraDescription.innerHTML = data.description;
+    img.setAttribute("src", cameraDetail.imageUrl);
+    cameraName.innerHTML = cameraDetail.name;
+    cameraPrice.innerHTML ='Price: $' + cameraDetail.price/100;
+    descritpion.innerHTML = 'Description:';
+    cameraDescription.innerHTML = cameraDetail.description;
     labelLenses.innerHTML= 'Choose a lense';
-
+    button.innerHTML= 'add to cart';
     totalContainer.appendChild(containerImage);
     totalContainer.appendChild(containerCameraDetails);
     totalContainer.classList.add("row");
 
     pageContainer.appendChild(totalContainer);
+    
+   
 
 }
 
@@ -155,8 +163,109 @@ function returnLenses(data){
     let addLense = document.getElementById("lenses" );
     addLense.appendChild(lense);
 
+   
+
+
+
+
 }
 }
 
+
+
+
+//add camera to cart
+
+
+fetch(url + id)
+.then(function (response) {
+  return response.json();
+}).then(function (cartData) {
+    addToCart(cartData);
+})
+.catch(function (err) {
+  console.log('error: ' + err);
+});
+
+function addToCart(cartData){
+    let addToCartButton = document.getElementById("add-cart");
+    
+     addToCartButton.addEventListener('click',() =>{
+            
+            let items = cartData.name
+            
+            const cartItems  = {
+                'name':cartData.name,
+                'price':cartData.price,
+                'image':cartData.imageUrl
+            };
+            
+            localStorage.setItem(items ,JSON.stringify(cartItems));
+            totalPrice()
+            
+           
+            console.log(dataCart)
+            //create cart
+
+            
+        
+      })
+
+      
+  }
+  //create cart
+
+  for(let i=0; i<localStorage.length; i++){
+  let dataCamera = localStorage.getItem(localStorage.key(i));
+  let cartContainer = document.getElementById("cart");
+  let cartCamera = document.createElement("h5");
+  let cartImg =document.createElement("img");
+  let quantityContainer = document.getElementById("quantity");
+  let quantityInput= document.createElement("input");
+  let quantityLabel = document.createElement("label");
+  let dataCart = JSON.parse(dataCamera);
+  
+  quantityInput.setAttribute("id","inputQuantity" );
+  quantityInput.setAttribute("type","text" );
+  quantityLabel.setAttribute("for","inputQuantity" );
+  quantityLabel.innerHTML= 'quantity:';
+  cartImg.setAttribute("src", dataCart.image);
+  cartImg.classList.add("mb-1");
+  cartCamera.classList.add("mb-0");
+  quantityInput.classList.add("mb-3");
+  cartCamera.innerHTML = dataCart.name;
+  cartContainer.appendChild(cartImg);
+  cartContainer.appendChild(cartCamera);
+
+  cartContainer.appendChild(quantityLabel);
+  cartContainer.appendChild(quantityInput);
+
+ 
+}
+ 
+//show total price
+let total = [ ]
+for(let i=0; i<localStorage.length; i++){
+    let dataCamera = localStorage.getItem(localStorage.key(i));
+    let dataCart = JSON.parse(dataCamera);
+    let price = dataCart.price/100
+    
+    total.push(parseFloat(price))
+    let totalPrice = total;
+    const totalInCart = totalPrice.reduce(function(totalPrice, price){
+    totalPrice += price;
+    return totalPrice;
+} ,  0)
+
+let showTotal = document.getElementById("show-total")
+
+showTotal.innerHTML = " $" + totalInCart;
+
+console.log(totalInCart)
+    
+
+   
+    
+}
 
 

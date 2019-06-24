@@ -31,6 +31,13 @@
 	
 
 }
+
+.cart{
+	text-decoration: none;
+	
+	
+
+}
 .second__logo{
 	font-size: 25px;
 	font-family: 'Shadows Into Light', cursive;
@@ -67,7 +74,7 @@ input {
 
 
 .header-container {
-  background-image: url(../img/pics-camera-6.jpg);
+  
   filter: brightness(90%);
   -webkit-filter: brightness(90%);
   width: 100%;
@@ -134,6 +141,7 @@ input {
   img{
 width: 100%;
 box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+cursor: pointer;
  }
 
  .overlay-right{
@@ -198,4 +206,28 @@ width: 100%;
 box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 
 }
+
+.shopping-cart{
+	margin-top: 40px;
+
+}
+
+.btn  {
+	background-color: #05A081 !important;
+	outline: none !important;
+	color: #FFFFFF !important;
+
+}
+
+.add-to-cart{
+	background-color: #05A081 !important;
+	margin-top: 5px;
+	text-decoration: none !important;
+
+}
+
+ a {
+	text-decoration: none;
+}
+
 

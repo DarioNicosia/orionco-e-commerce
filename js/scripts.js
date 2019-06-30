@@ -199,7 +199,8 @@ function addToCart(cartData){
             const cartItems  = {
                 'name':cartData.name,
                 'price':cartData.price,
-                'image':cartData.imageUrl
+                'image':cartData.imageUrl,
+                'id':cartData._id
             };
             
             localStorage.setItem(items ,JSON.stringify(cartItems));
@@ -209,7 +210,7 @@ function addToCart(cartData){
             
            
             console.log(dataCart)
-            //create cart
+          
 
             
         
@@ -230,8 +231,10 @@ console.log(localStorage.length)
   let cartCamera = document.createElement("h5");
   let cartImg =document.createElement("img");
   let quantityContainer = document.getElementById("quantity");
-  let quantityInput= document.createElement("input");
   let quantityLabel = document.createElement("label");
+  let quantityInput= document.createElement("input");
+  let removeButton = document.createElement("button"); 
+  
   let dataCart = JSON.parse(dataCamera);
   
   quantityInput.setAttribute("id","inputQuantity" );
@@ -242,12 +245,20 @@ console.log(localStorage.length)
   cartImg.classList.add("mb-1");
   cartCamera.classList.add("mb-0");
   quantityInput.classList.add("mb-3");
+  
+  removeButton.classList.add("btn-secondary","mb-2" );
+  removeButton.setAttribute("id", dataCart.id);
+  removeButton.innerHTML = 'remove';
+
   cartCamera.innerHTML = dataCart.name;
   cartContainer.appendChild(cartImg);
   cartContainer.appendChild(cartCamera);
 
   cartContainer.appendChild(quantityLabel);
   cartContainer.appendChild(quantityInput);
+
+  cartContainer.appendChild(removeButton);
+
 
  
 }
@@ -279,6 +290,23 @@ console.log(localStorage.length)
    
     
 }
+
+//remove items
+
+for(let i=0; i<localStorage.length; i++){
+let dataCamera = localStorage.getItem(localStorage.key(i));
+
+let dataCart = JSON.parse(dataCamera);
+
+let removeButton = document.getElementById(dataCart.id)
+removeButton.addEventListener('click',() =>{
+localStorage.removeItem(dataCart.name)
+setInterval(()=>{
+    window.location.reload();
+  }, 1000);
+})
+}
+
 
 
 

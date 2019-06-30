@@ -2,7 +2,7 @@
 	font-family:'Roboto', sans-serif;
 	box-sizing: border-box;
 	padding: 0;
-  margin: 0;
+    margin: 0;
   
     
 
@@ -23,21 +23,14 @@
 
 }
 
- .nav-link li {
+.cart a {
 	text-decoration: none;
-	margin: 10px;
-	font-size: 12px;
-	letter-spacing: 0.06em;
+	color: #05A081;
 	
 
 }
 
-.cart{
-	text-decoration: none;
-	
-	
 
-}
 .second__logo{
 	font-size: 25px;
 	font-family: 'Shadows Into Light', cursive;
@@ -69,6 +62,12 @@ input {
 	font-size:15px;
 	border-radius: 0.25rem;
 	cursor: pointer;
+	
+}
+
+a .cart{
+	text-decoration: none;
+
 	
 }
 

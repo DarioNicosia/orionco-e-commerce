@@ -230,21 +230,21 @@ console.log(localStorage.length)
   let cartContainer = document.getElementById("cart");
   let cartCamera = document.createElement("h5");
   let cartImg =document.createElement("img");
-  let quantityContainer = document.getElementById("quantity");
-  let quantityLabel = document.createElement("label");
-  let quantityInput= document.createElement("input");
+  //let quantityContainer = document.getElementById("quantity");
+  //let quantityLabel = document.createElement("label");
+  //let quantityInput= document.createElement("input");
   let removeButton = document.createElement("button"); 
   
   let dataCart = JSON.parse(dataCamera);
   
-  quantityInput.setAttribute("id","inputQuantity" );
-  quantityInput.setAttribute("type","text" );
-  quantityLabel.setAttribute("for","inputQuantity" );
-  quantityLabel.innerHTML= 'quantity:';
+  //quantityInput.setAttribute("id","inputQuantity" );
+  //quantityInput.setAttribute("type","text" );
+  //quantityLabel.setAttribute("for","inputQuantity" );
+  //quantityLabel.innerHTML= 'quantity:';
   cartImg.setAttribute("src", dataCart.image);
   cartImg.classList.add("mb-1");
   cartCamera.classList.add("mb-0");
-  quantityInput.classList.add("mb-3");
+  //quantityInput.classList.add("mb-3");
   
   removeButton.classList.add("btn-secondary","mb-2" );
   removeButton.setAttribute("id", dataCart.id);
@@ -254,8 +254,8 @@ console.log(localStorage.length)
   cartContainer.appendChild(cartImg);
   cartContainer.appendChild(cartCamera);
 
-  cartContainer.appendChild(quantityLabel);
-  cartContainer.appendChild(quantityInput);
+  //cartContainer.appendChild(quantityLabel);
+  //cartContainer.appendChild(quantityInput);
 
   cartContainer.appendChild(removeButton);
 
@@ -307,7 +307,15 @@ setInterval(()=>{
 })
 }
 
+/* Check if the form is complete */
+let inputFirstName = document.getElementById("inputFirstName")
+let InputLastName = document.getElementById("inputLastName")
+let InputEmail= document.getElementById("InputEmail")
+let InputAddress= document.getElementById("InputAddress")
+let InputCity= document.getElementById("InputCity")
+let btnCheckout= document.getElementById("checkout")
 
+if (localStorage.length > 0){
 
-
+}
 

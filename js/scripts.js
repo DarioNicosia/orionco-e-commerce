@@ -315,7 +315,14 @@ let InputAddress= document.getElementById("InputAddress")
 let InputCity= document.getElementById("InputCity")
 let btnCheckout= document.getElementById("checkout")
 
-if (localStorage.length > 0){
-
+//product id array
+const productArrays = [ ]
+for(let i=0; i<localStorage.length; i++){
+  let dataCamera = localStorage.getItem(localStorage.key(i));
+  let dataCart = JSON.parse(dataCamera);
+   
+   productArrays.push(dataCart.id)
+   
 }
 
+console.log(productArrays)

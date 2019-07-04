@@ -309,11 +309,11 @@ setInterval(()=>{
 
 /* Check if the form is complete */
 let inputFirstName = document.getElementById("inputFirstName")
-let InputLastName = document.getElementById("inputLastName")
-let InputEmail= document.getElementById("InputEmail")
-let InputAddress= document.getElementById("InputAddress")
-let InputCity= document.getElementById("InputCity")
-let btnCheckout= document.getElementById("checkout")
+let inputLastName = document.getElementById("inputLastName")
+let inputEmail= document.getElementById("InputEmail")
+let inputAddress= document.getElementById("InputAddress")
+let inputCity= document.getElementById("InputCity")
+
 
 //product id array
 const productArrays = [ ]
@@ -325,4 +325,28 @@ for(let i=0; i<localStorage.length; i++){
    
 }
 
-console.log(productArrays)
+
+
+
+
+let btnCheckout= document.getElementById("checkout")
+
+btnCheckout.addEventListener('click', ($event) => {
+  $event.preventDefault();
+ 
+  const formData = {
+    'firstName':inputFirstName.value, 
+    'lastName':inputLastName.value, 
+    'email':inputEmail.value,
+    'address':inputAddress.value,
+    'city':inputCity.value   
+  };
+  console.log(productArrays)
+  console.log(formData)
+
+
+
+
+
+
+});

@@ -315,6 +315,7 @@ let inputAddress= document.getElementById("InputAddress")
 let inputCity= document.getElementById("InputCity")
 
 
+
 //product id array
 const productArrays = [ ]
 for(let i=0; i<localStorage.length; i++){
@@ -327,26 +328,86 @@ for(let i=0; i<localStorage.length; i++){
 
 
 
+//post
 
+let form= document.getElementById("form")
+let productId = JSON.stringify(productArrays)
 
-let btnCheckout= document.getElementById("checkout")
-
-btnCheckout.addEventListener('click', ($event) => {
+form.addEventListener('submit', ($event) => {
   $event.preventDefault();
  
-  const formData = {
-    'firstName':inputFirstName.value, 
-    'lastName':inputLastName.value, 
-    'email':inputEmail.value,
-    'address':inputAddress.value,
-    'city':inputCity.value   
+  let form =
+  {
+    contact : {
+      firstName: inputFirstName.value,
+      lastName: inputLastName.value,
+      address: inputAddress.value,
+      city: inputCity.value,
+      email: inputEmail.value
+    },
+
+     products: productArrays
+
   };
-  console.log(productArrays)
-  console.log(formData)
+  //console.log(productArrays)
+  //console.log(formData)
 
-
-
-
+  
+  console.log(form)
+  const options = {
+    method:'POST',
+    mode:'cors',
+    headers:{
+      'Content-Type': 'application/json' 
+    }, 
+    body:JSON.stringify(form)
+  };
+  
+  fetch(url +'order', options )
+  .then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    let idReturned = document.getElementById("orderIdSpan")
+    idReturned.innerHTML = data.orderId
+  })
+  .catch(function (err) {
+    console.log('error: ' + err);
+  });
+  
+  
+  function returnIdOrder(data){
+    setInterval(()=>{
+      window.location.replace('confirmation.html');
+      
+    }, 3000);
+    
+    
+  }
 
 
 });
+
+
+
+/*const options = {
+  method:'POST',
+  headers:{
+    'Content-Type':'application/json' 
+  }, 
+  body:JSON.stringify(orderData)
+};
+
+fetch(url + 'order', options )
+.then(function (response) {
+  return response.json();
+}).then(function (data) {
+    returnIdOrder(data);
+})
+.catch(function (err) {
+  console.log('error: ' + err);
+});
+
+
+function returnIdOrder(data){
+
+}*/

@@ -328,6 +328,7 @@ for(let i=0; i<localStorage.length; i++){
 
 
 
+
 //post
 
 let form= document.getElementById("form")
@@ -353,7 +354,7 @@ form.addEventListener('submit', ($event) => {
   //console.log(formData)
 
   
-  console.log(form)
+ 
   const options = {
     method:'POST',
     mode:'cors',
@@ -367,47 +368,47 @@ form.addEventListener('submit', ($event) => {
   .then(function (response) {
     return response.json();
   }).then(function (data) {
-    let idReturned = document.getElementById("orderIdSpan")
-    idReturned.innerHTML = data.orderId
+    redirectToConfirm(data);
+    console.log(data.orderId)
   })
   .catch(function (err) {
     console.log('error: ' + err);
   });
   
   
-  function returnIdOrder(data){
-    setInterval(()=>{
-      window.location.replace('confirmation.html');
-      
-    }, 3000);
-    
-    
+  
+  function redirectToConfirm(data){
+  console.log('dario')
+  let confirmUrl = `confirmation.html?orderId=${data.orderId}`;
+  window.location = confirmUrl
+  console.log('dario')
+  //let idOrder = document.getElementById("orderIdSpan")
+  idOrder.innerHTML =data.orderId
   }
 
+ 
+  
+  
 
 });
 
 
+function printOrderId() {
+ 
+}
 
-/*const options = {
-  method:'POST',
-  headers:{
-    'Content-Type':'application/json' 
-  }, 
-  body:JSON.stringify(orderData)
-};
-
-fetch(url + 'order', options )
-.then(function (response) {
-  return response.json();
-}).then(function (data) {
-    returnIdOrder(data);
-})
-.catch(function (err) {
-  console.log('error: ' + err);
-});
+function getNewUrlParams(){
+  let param = window.location.search;
+  let newUrl = new URLSearchParams(param);
+  return newUrl.get("orderId");
+}
+let idOrder = getNewUrlParams()
 
 
-function returnIdOrder(data){
 
-}*/
+
+
+
+
+
+   

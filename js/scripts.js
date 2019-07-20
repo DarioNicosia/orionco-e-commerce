@@ -307,7 +307,7 @@ setInterval(()=>{
 })
 }
 
-/* Check if the form is complete */
+/* access the DOM cart html */
 let inputFirstName = document.getElementById("inputFirstName")
 let inputLastName = document.getElementById("inputLastName")
 let inputEmail= document.getElementById("InputEmail")
@@ -331,12 +331,13 @@ for(let i=0; i<localStorage.length; i++){
 
 //post
 
-let form= document.getElementById("form")
-let productId = JSON.stringify(productArrays)
+let userForm= document.getElementById("form")
+//let productId = JSON.stringify(productArrays)
 
-form.addEventListener('submit', ($event) => {
+
+
+userForm.addEventListener('submit', ($event) => {
   $event.preventDefault();
- 
   let form =
   {
     contact : {
@@ -350,6 +351,7 @@ form.addEventListener('submit', ($event) => {
      products: productArrays
 
   };
+  
   //console.log(productArrays)
   //console.log(formData)
 
@@ -374,41 +376,11 @@ form.addEventListener('submit', ($event) => {
   .catch(function (err) {
     console.log('error: ' + err);
   });
-  
-  
-  
-  function redirectToConfirm(data){
-  console.log('dario')
-  let confirmUrl = `confirmation.html?orderId=${data.orderId}`;
-  window.location = confirmUrl
-  console.log('dario')
-  //let idOrder = document.getElementById("orderIdSpan")
-  idOrder.innerHTML =data.orderId
-  }
 
- 
-  
-  
+  function redirectToConfirm(data){
+    let confirmUrl = 'confirmation.html?orderId='+ data.orderId;
+    window.location = confirmUrl
+  }
 
 });
 
-
-function printOrderId() {
- 
-}
-
-function getNewUrlParams(){
-  let param = window.location.search;
-  let newUrl = new URLSearchParams(param);
-  return newUrl.get("orderId");
-}
-let idOrder = getNewUrlParams()
-
-
-
-
-
-
-
-
-   

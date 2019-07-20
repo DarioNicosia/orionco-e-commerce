@@ -17,13 +17,13 @@
 </head>
 <body class="body">
 
-    <div class="card col-sm-12 col-md-4 confirm">
-        <img src="../img/thankYou.jpg" class="card-img-top">
+    <div class="card col-sm-12 col-md-4 mx-auto ">
+        
         <div id="provaok" class="card-body">
           <h3 class="card-title">Your order has been successfully processed.</h3>
           <p class="card-text">Here is your id confirmation : </p>
           <p class="card-text" id="orderIdSpan"> </p>
-          <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+          <a href="index.html" class="btn btn-primary" id="clearStorage">Continue Shopping</a>
         </div>
       </div>
 
@@ -34,7 +34,15 @@
 
 
 
-
+      <script type="text/javascript">
+        let urlConfirm = window.location.search;
+        let usp = new URLSearchParams(urlConfirm);
+        let orderId = usp.get("orderId");
+        let idOrder = document.getElementById("orderIdSpan");
+        idOrder.innerHTML = orderId;
+      
+        console.log('dario')
+    </script>
 
      <!-- Javascript -->
 <script src="./js/scripts.js"></script>      

@@ -34,7 +34,7 @@ function getAllCameras(data){
 
 
         productBottom.classList.add("product-bottom", "text-center");
-        link.setAttribute("href","product.html?id=" + data[i]._id) ;
+        link.setAttribute("href","html/product.html?id=" + data[i]._id) ;
         totalProduct.classList.add("col-md-4"); 
        
         link.setAttribute("id", data[i]._id);
@@ -203,6 +203,7 @@ function addToCart(cartData){
                 'id':cartData._id
             };
             
+            
             localStorage.setItem(items ,JSON.stringify(cartItems));
             setInterval(()=>{
                 window.location.reload();
@@ -224,7 +225,7 @@ navCount.innerHTML = localStorage.length + ' items'
 console.log(localStorage.length)
   
 //create cart
-
+ 
   for(let i=0; i<localStorage.length; i++){
   let dataCamera = localStorage.getItem(localStorage.key(i));
   let cartContainer = document.getElementById("cart");
@@ -378,8 +379,12 @@ userForm.addEventListener('submit', ($event) => {
   });
 
   function redirectToConfirm(data){
+    if(localStorage.length===0){
+      alert("your cart is empty")
+    }else{
     let confirmUrl = 'confirmation.html?orderId='+ data.orderId;
     window.location = confirmUrl
+  }
   }
 
 });

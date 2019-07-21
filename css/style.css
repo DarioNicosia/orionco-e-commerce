@@ -30,7 +30,10 @@
 
 }
 
-
+.logo-link {
+	text-decoration: none !important;
+	color:  #FFFFFF !important;	
+}
 .second__logo{
 	font-size: 25px;
 	font-family: 'Shadows Into Light', cursive;
@@ -225,8 +228,6 @@ box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 
 }
 
- a {
-	text-decoration: none;
-}
+ 
 
 

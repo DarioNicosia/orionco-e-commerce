@@ -40,8 +40,11 @@
         let orderId = usp.get("orderId");
         let idOrder = document.getElementById("orderIdSpan");
         idOrder.innerHTML = orderId;
-      
-        console.log('dario')
+        let clearCart = document.getElementById("clearStorage")
+        clearCart.addEventListener('click',($event)=>{
+        localStorage.clear();
+       })
+        
     </script>
 
      <!-- Javascript -->
